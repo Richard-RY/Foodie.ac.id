@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foodie | Resep Makanan Online + SPK ORESTE</title>
+  <meta name="description" content="Foodie adalah website resep makanan online dengan fitur pencarian, upload resep lokal, dan SPK rekomendasi makanan menggunakan metode ORESTE." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header" id="home">
+    <nav class="navbar">
+      <a href="#home" class="brand" aria-label="Foodie Home">
+        <span class="brand-icon">🍳</span>
+        <span>Foodie</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Buka menu navigasi">☰</button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#viral">Viral</a>
+        <a href="#recipes">Resep</a>
+        <a href="#spk">SPK ORESTE</a>
+        <a href="#upload">Upload</a>
+        <a href="#about">Tentang</a>
+      </div>
+    </nav>
+
+    <section class="hero section-shell">
+      <div class="hero-content">
+        <span class="eyebrow">🍽️ Resep online yang hangat & mudah dicoba</span>
+        <h1>Temukan resep viral dan rekomendasi makanan terbaik dengan metode ORESTE.</h1>
+        <p>
+          Foodie membantu kamu mencari resep, melihat menu yang sedang viral, mengunggah resep sendiri,
+          serta menentukan rekomendasi makanan menggunakan Sistem Pendukung Keputusan.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#spk">Coba SPK ORESTE</a>
+          <a class="btn secondary" href="#recipes">Lihat Resep</a>
+        </div>
+      </div>
+
+      <div class="hero-card" aria-label="Kartu rekomendasi makanan">
+        <div class="floating-badge">🔥 Trending</div>
+        <div class="plate">🍜</div>
+        <h2>Seblak Creamy</h2>
+        <p>Pedas, gurih, dan cocok untuk menu viral hari ini.</p>
+        <div class="mini-stats">
+          <span>⏱️ 20 menit</span>
+          <span>⭐ 4.8</span>
+          <span>💰 18K</span>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section-shell section" id="viral">
+      <div class="section-heading split">
+        <div>
+          <span class="eyebrow">Menu Viral</span>
+          <h2>Resep yang sedang ramai dicari</h2>
+        </div>
+        <p>Auto-scroll berjalan otomatis. Arahkan kursor ke kartu untuk berhenti sementara.</p>
+      </div>
+
+      <div class="viral-slider" id="viralSlider" tabindex="0" aria-label="Daftar menu viral auto scrolling">
+        <div class="viral-track" id="viralTrack"></div>
+      </div>
+    </section>
+
+    <section class="section-shell section" id="recipes">
+      <div class="section-heading center">
+        <span class="eyebrow">Cari Resep</span>
+        <h2>Pilih resep sesuai selera kamu</h2>
+        <p>Gunakan search untuk mencari nama menu, kategori, atau bahan yang kamu inginkan.</p>
+      </div>
+
+      <div class="search-panel">
+        <div class="search-box">
+          <span>🔎</span>
+          <input type="text" id="searchInput" placeholder="Cari resep, contoh: seblak, ayam, dessert..." />
+        </div>
+        <select id="categoryFilter" aria-label="Filter kategori resep">
+          <option value="all">Semua Kategori</option>
+          <option value="Makanan Berat">Makanan Berat</option>
+          <option value="Camilan">Camilan</option>
+          <option value="Dessert">Dessert</option>
+          <option value="Minuman">Minuman</option>
+        </select>
+      </div>
+
+      <div class="recipe-grid" id="recipeGrid"></div>
+      <p class="empty-state" id="emptyState" hidden>Tidak ada resep yang cocok dengan pencarian kamu.</p>
+    </section>
+
+    <section class="section section-spk" id="spk">
+      <div class="section-shell">
+        <div class="section-heading center light-heading">
+          <span class="eyebrow">Sistem Pendukung Keputusan</span>
+          <h2>Rekomendasi makanan menggunakan metode ORESTE</h2>
+          <p>
+            ORESTE memberi peringkat berdasarkan jarak antara ranking kriteria dan ranking alternatif.
+            Pada hasil akhir, <strong>skor paling kecil berarti rekomendasi paling baik</strong>.
+          </p>
+        </div>
+
+        <div class="spk-layout">
+          <aside class="spk-card control-panel">
+            <h3>Atur Prioritas Kriteria</h3>
+            <p class="muted">Geser nilai prioritas. Semakin besar prioritas, kriteria dianggap semakin penting.</p>
+
+            <div class="criteria-controls" id="criteriaControls"></div>
+            <button class="btn primary full" id="calculateBtn">Hitung Rekomendasi</button>
+            <button class="btn ghost full" id="resetWeightsBtn">Reset Prioritas</button>
+          </aside>
+
+          <div class="spk-card result-panel">
+            <div class="winner-card" id="winnerCard"></div>
+
+            <div class="method-box">
+              <h3>Ringkasan Rumus</h3>
+              <ol>
+                <li>Menentukan ranking kriteria dari bobot prioritas.</li>
+                <li>Menentukan ranking alternatif pada setiap kriteria.</li>
+                <li>Menghitung distance score: <code>√(0.5 × (B² + C²))</code>.</li>
+                <li>Menjumlahkan distance score, lalu mengurutkan dari skor terkecil.</li>
+              </ol>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Menu</th>
+                    <th>Harga</th>
+                    <th>Waktu</th>
+                    <th>Kesulitan</th>
+                    <th>Rating</th>
+                    <th>Gizi</th>
+                    <th>Skor ORESTE</th>
+                  </tr>
+                </thead>
+                <tbody id="rankingBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell section" id="upload">
+      <div class="section-heading center">
+        <span class="eyebrow">Upload Resep</span>
+        <h2>Tambahkan menu makanan buatanmu</h2>
+        <p>
+          Untuk GitHub Pages, data upload tersimpan di browser kamu melalui localStorage.
+          Jadi belum masuk ke database online, tetapi sudah bisa dipakai untuk demo tugas.
+        </p>
+      </div>
+
+      <form class="upload-form" id="recipeForm">
+        <div class="form-grid">
+          <label>
+            Nama Resep
+            <input type="text" id="recipeName" placeholder="Contoh: Ayam Geprek Mozarella" required />
+          </label>
+
+          <label>
+            Kategori
+            <select id="recipeCategory" required>
+              <option value="Makanan Berat">Makanan Berat</option>
+              <option value="Camilan">Camilan</option>
+              <option value="Dessert">Dessert</option>
+              <option value="Minuman">Minuman</option>
+            </select>
+          </label>
+
+          <label>
+            Emoji/Gambar Sederhana
+            <input type="text" id="recipeEmoji" placeholder="Contoh: 🍗" maxlength="4" />
+          </label>
+
+          <label>
+            Harga Bahan (ribuan rupiah)
+            <input type="number" id="recipePrice" min="1" placeholder="Contoh: 25" required />
+          </label>
+
+          <label>
+            Waktu Memasak (menit)
+            <input type="number" id="recipeTime" min="1" placeholder="Contoh: 30" required />
+          </label>
+
+          <label>
+            Tingkat Kesulitan (1-5)
+            <input type="number" id="recipeDifficulty" min="1" max="5" placeholder="1 mudah, 5 sulit" required />
+          </label>
+
+          <label>
+            Rating (1-5)
+            <input type="number" id="recipeRating" min="1" max="5" step="0.1" placeholder="Contoh: 4.7" required />
+          </label>
+
+          <label>
+            Nilai Gizi (1-5)
+            <input type="number" id="recipeNutrition" min="1" max="5" step="0.1" placeholder="Contoh: 4.2" required />
+          </label>
+        </div>
+
+        <label>
+          Deskripsi Singkat
+          <textarea id="recipeDescription" rows="3" placeholder="Jelaskan resep secara singkat..." required></textarea>
+        </label>
+
+        <label>
+          Bahan-bahan
+          <textarea id="recipeIngredients" rows="4" placeholder="Pisahkan bahan dengan koma. Contoh: ayam, tepung, cabai, bawang" required></textarea>
+        </label>
+
+        <label>
+          Cara Membuat
+          <textarea id="recipeSteps" rows="4" placeholder="Tulis langkah-langkah singkat pembuatan resep" required></textarea>
+        </label>
+
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Upload Resep</button>
+          <button type="button" class="btn secondary" id="clearLocalBtn">Hapus Resep Upload Lokal</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="section-shell section about" id="about">
+      <div class="about-card">
+        <div>
+          <span class="eyebrow">Tentang Foodie</span>
+          <h2>Website resep online dengan sentuhan SPK</h2>
+          <p>
+            Foodie dibuat sebagai contoh website frontend yang bisa diunggah ke GitHub Pages.
+            Website ini cocok untuk proyek kampus karena menggabungkan desain website, JavaScript,
+            pencarian resep, form upload lokal, dan perhitungan metode ORESTE.
+          </p>
+        </div>
+        <div class="about-points">
+          <span>✅ HTML, CSS, JavaScript</span>
+          <span>✅ Responsive</span>
+          <span>✅ GitHub Pages Ready</span>
+          <span>✅ SPK ORESTE</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Foodie. Dibuat untuk website resep makanan online dan demo SPK ORESTE.</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
