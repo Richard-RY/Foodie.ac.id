@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foodie - Resep Makanan Online</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">🍽️ Foodie</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#viral">Viral</a>
+      <a href="#search">Cari Resep</a>
+      <a href="#upload">Upload</a>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-text">
+      <p class="label">Resep Online Kekinian</p>
+      <h1>Temukan resep makanan viral dengan mudah</h1>
+      <p>
+        Foodie membantu kamu mencari inspirasi makanan yang sedang populer,
+        lengkap dengan bahan dan cara membuatnya.
+      </p>
+      <a href="#viral" class="btn">Lihat Resep Viral</a>
+    </div>
+    <div class="hero-card">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" alt="Makanan lezat" />
+    </div>
+  </section>
+
+  <section id="viral" class="section">
+    <div class="section-title">
+      <p class="label">Menu Viral</p>
+      <h2>Resep yang Lagi Populer</h2>
+    </div>
+
+    <div class="slider-wrapper">
+      <button class="slide-btn" id="prevBtn">❮</button>
+      <div class="recipe-slider" id="viralRecipes"></div>
+      <button class="slide-btn" id="nextBtn">❯</button>
+    </div>
+  </section>
+
+  <section id="search" class="section search-section">
+    <div class="section-title">
+      <p class="label">Cari Resep</p>
+      <h2>Mau masak apa hari ini?</h2>
+    </div>
+
+    <input type="text" id="searchInput" placeholder="Cari resep, contoh: seblak, ayam, dessert..." />
+    <div class="recipe-grid" id="searchResults"></div>
+  </section>
+
+  <section id="upload" class="section upload-section">
+    <div class="section-title">
+      <p class="label">Upload Resep</p>
+      <h2>Tambahkan menu makananmu</h2>
+      <p class="note">Data tersimpan sementara di browser selama halaman belum direfresh.</p>
+    </div>
+
+    <form id="uploadForm" class="upload-form">
+      <input type="text" id="foodName" placeholder="Nama makanan" required />
+      <input type="text" id="foodImage" placeholder="Link gambar makanan" required />
+      <textarea id="foodDesc" placeholder="Deskripsi singkat" required></textarea>
+      <textarea id="foodIngredients" placeholder="Bahan-bahan" required></textarea>
+      <textarea id="foodSteps" placeholder="Cara membuat" required></textarea>
+      <button type="submit" class="btn">Upload Resep</button>
+    </form>
+  </section>
+
+  <div class="modal" id="recipeModal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeModal">×</button>
+      <img id="modalImage" src="" alt="Gambar resep" />
+      <h2 id="modalTitle"></h2>
+      <p id="modalDesc"></p>
+      <h3>Bahan-bahan</h3>
+      <p id="modalIngredients"></p>
+      <h3>Cara Membuat</h3>
+      <p id="modalSteps"></p>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Foodie. Resep makanan online sederhana.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
