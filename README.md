@@ -1,28 +1,15 @@
-# 🍜 Foodie — Website Resep Makanan Online + SPK ORESTE
-
+# 🍜 Foodie — Website Resep Makanan Online 
 Foodie adalah website resep makanan online yang dibuat menggunakan HTML, CSS, dan JavaScript. Website ini cocok dipublikasikan melalui GitHub Pages karena tidak membutuhkan backend atau database.
 
 ## Fitur
 
 - Tampilan modern, cerah, dan hangat
-- Hero section yang responsif dan tidak terlalu besar
-- Auto scrolling menu viral
 - Search resep makanan
 - Filter kategori resep
 - Upload resep makanan secara lokal menggunakan `localStorage`
 - Sistem Pendukung Keputusan rekomendasi makanan menggunakan metode ORESTE
 - Tabel ranking hasil ORESTE
 - Responsive untuk laptop, tablet, dan HP
-
-## Struktur File
-
-```text
-foodie-oreste-v2/
-├── index.html
-├── style.css
-├── script.js
-└── README.md
-```
 
 ## Kriteria SPK ORESTE
 
